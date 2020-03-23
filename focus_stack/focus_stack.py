@@ -14,6 +14,10 @@ import numpy as np
 
 DEBUG = False
 
+# use SIFT or ORB for feature detection.
+# SIFT generally produces better results, but it is not FOSS (OpenCV 4.X does not support it).
+USE_SIFT = False if cv2.__version__ > "3.4.2" else True
+
 logger = logging.getLogger(__name__)
 logging.basicConfig()
 logger.setLevel(logging.INFO)
@@ -46,18 +50,13 @@ class FocusStacker(object):
         return [cv2.imread(img) for img in image_files]
 
     @staticmethod
-    def _align_images(
-        images: List[np.ndarray], use_sift: bool = True
-    ) -> List[np.ndarray]:
+    def _align_images(images: List[np.ndarray]) -> List[np.ndarray]:
         """Align the images.  Changing the focus on a lens, even if the camera remains fixed,
          causes a mild zooming on the images. We need to correct the images so they line up perfectly on top
         of each other.
 
         Args:
             images: list of image data
-            use_sift: bool to use SIFT or ORB for feature detection.
-                SIFT generally produces better results, but it is not FOSS (OpenCV 4.X does not support it).
-
         """
 
         def _find_homography(
@@ -79,7 +78,7 @@ class FocusStacker(object):
         logger.info("aligning images")
         aligned_imgs = []
 
-        detector = cv2.xfeatures2d.SIFT_create() if use_sift else cv2.ORB_create(1000)
+        detector = cv2.xfeatures2d.SIFT_create() if USE_SIFT else cv2.ORB_create(1000)
 
         # Assume that image 0 is the "base" image and align all the following images to it
         aligned_imgs.append(images[0])
@@ -89,7 +88,7 @@ class FocusStacker(object):
         for i in range(1, len(images)):
             img_i_key_points, image_i_desc = detector.detectAndCompute(images[i], None)
 
-            if use_sift:
+            if USE_SIFT:
                 bf = cv2.BFMatcher()
                 # This returns the top two matches for each feature point (list of list)
                 pair_matches = bf.knnMatch(image_i_desc, image1_desc, k=2)
