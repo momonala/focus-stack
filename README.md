@@ -11,7 +11,9 @@ The ThoughtEmporium has a great explainer video [on Youtube](https://www.youtube
 ---
 ## Installation
 
-`focusstack` can be installed by running `pip install focusstack`. It requires Python 3.6.0+, OpenCV, and numpy.
+`focusstack` can be installed by running `pip install focusstack`. It requires Python 3.6.0+, OpenCV<3.4.2, and numpy.
+
+You can use OpenCV 4.X+, but since the SIFT algorithm is proprietary, you must set `use_sift` in the source code to False.
 
 Alternatively, you can install from source:
 ```bash
@@ -21,8 +23,14 @@ pip install  -e .
 ```
 
 ## Usage
-
 ```bash
+focusstack -i input_dir -o output.png
+```
+
+Options:
+```bash
+$focusstack --help
+
 usage: Tool to focus stack a list of images. [-h] -i INPUT -o OUTPUT
                                              [-d DEBUG] [-g GAUSSIAN]
                                              [-l LAPLACIAN]
@@ -46,7 +54,7 @@ optional arguments:
 
 - it does nothing if no sources are passed to it;
 
-- it will read images from the stated input directory, and write the output image (`.png`) relative to the current working directory.
+- it will read images from the stated input directory, and write the output image relative to the current working directory.
 
 - exits with code 0 unless an internal error occurred.
 
@@ -59,4 +67,4 @@ MIT
 
 This code and algorithm was inspired and adapted from the following sources:
 - [StackOverflow thread](http://stackoverflow.com/questions/15911783/what-are-some-common-focus-stacking-algorithms)
-- [Charles McGuinness' on Github](https://github.com/cmcguinness/focusstack)
+- [Charles McGuinness' implementation on Github](https://github.com/cmcguinness/focusstack)
