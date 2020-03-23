@@ -1,0 +1,74 @@
+# Sensitive Data #
+###################
+
+# Testing Data #
+###################
+input/
+output/
+
+# Large Data #
+###################
+/tmp/*
+*.csv
+
+# Project Files #
+###################
+.spyproject
+.idea
+.eggs
+__pycache__/
+.pytest_cache/
+**/*.swp
+venv
+.ipynb_checkpoints
+.mypy_cache
+focus_stack.egg-info/
+
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+*.c
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite*
+logging_config_local.yaml
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# PyTest generated files #
+##########################
+.pytest_cache
