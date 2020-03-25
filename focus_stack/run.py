@@ -25,11 +25,7 @@ def main():
         type=str,
     )
     _parser.add_argument(
-        "-o",
-        "--output",
-        help="Name of output image. Will be stored in /output.",
-        required=True,
-        type=str,
+        "-o", "--output", help="Name of output image.", required=True, type=str,
     )
     _parser.add_argument(
         "-d", "--debug", help="Debug mode.", default=False, required=False, type=bool,
