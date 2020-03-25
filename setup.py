@@ -14,7 +14,7 @@ setup(
     author_email="mnalavadi@gmail.com",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/momonala/focus_stack",
+    url="https://github.com/momonala/focusstack",
     description="Tool to focus stack images.",
     packages=setuptools.find_packages(),
     package_dir={"focus_stack": "focus_stack"},
