@@ -13,6 +13,9 @@ output/
 
 # Project Files #
 ###################
+upload_pypi.sh
+build/
+dist/
 .spyproject
 .idea
 .eggs
