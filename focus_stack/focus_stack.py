@@ -26,7 +26,7 @@ logger.setLevel(logging.INFO)
 class FocusStacker(object):
     def __init__(
         self, laplacian_kernel_size: int = 5, gaussian_blur_kernel_size: int = 5,
-    ):
+    ) -> None:
         """Focus stacking class.
         Args:
             laplacian_kernel_size: Size of the laplacian window. Must be odd.
@@ -148,8 +148,8 @@ class FocusStacker(object):
     def _find_focus_regions(
         images: List[np.ndarray], laplacian_gradient: np.ndarray
     ) -> np.ndarray:
-        """Take the absolute value of the Laplacian (gradient) of Gaussian result.
-        This will quantify the strength of edges with respect to the size and strength of the kernel (focus regions).
+        """Take the absolute value of the Laplacian (2nd order gradient) of the Gaussian blur result.
+        This will quantify the strength of the edges with respect to the size and strength of the kernel (focus regions).
 
         Then create a blank image, loop through each pixel and find the strongest edge in the LoG
         (i.e. the highest value in the image stack) and take the RGB value for that
