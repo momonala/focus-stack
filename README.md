@@ -13,7 +13,7 @@ The ThoughtEmporium has a great explainer video [on Youtube](https://www.youtube
 ---
 ## Installation
 
-`focusstack` can be installed by running `pip install focusstack`. It requires Python 3.6.0+, OpenCV<3.4.2, and numpy.
+`focusstack` can be installed by running `pip install focus-stack`. It requires Python 3.6.0+, OpenCV<3.4.2, and numpy.
 
 You can use OpenCV 4.X+, but since the SIFT algorithm is proprietary, you must set `use_sift` in the source code to False.
 
